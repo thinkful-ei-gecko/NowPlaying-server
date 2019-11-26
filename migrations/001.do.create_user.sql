@@ -3,5 +3,5 @@ CREATE TABLE "user" (
   "username" TEXT NOT NULL UNIQUE,
   "password" TEXT NOT NULL,
   "name" TEXT NOT NULL,
-  "email" NVARCHAR(320) NOT NULL UNIQUE
+  "email" VARCHAR(255) NOT NULL UNIQUE
 );

@@ -27,8 +27,6 @@
     "knex": "^0.20.2",
     "morgan": "^1.9.1",
     "pg": "^7.14.0",
-    "postgrator": "^3.10.2",
-    "postgrator-cli": "^3.3.0",
     "winston": "^3.2.1",
     "xss": "^1.0.6"
   },
@@ -36,6 +34,7 @@
     "chai": "^4.2.0",
     "mocha": "^6.2.0",
     "nodemon": "^1.19.2",
+    "postgrator-cli": "^3.2.0",
     "supertest": "^4.0.2"
   }
 }
