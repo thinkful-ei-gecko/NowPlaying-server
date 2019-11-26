@@ -7,6 +7,7 @@ const { NODE_ENV } = require('./config');
 const errorHandler = require('./middleware/error-handler');
 const authRouter = require('./auth /auth-router');
 const userRouter = require('./user/user-router');
+const ej = console.log('im here')
 
 const app = express();
 const morganOption = (NODE_ENV === 'production') ? 'tiny' : 'common';
