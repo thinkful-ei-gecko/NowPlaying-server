@@ -58,3 +58,5 @@ mainRouter
       })
       .catch(next);
   });
+
+  module.exports = mainRouter
