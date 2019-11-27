@@ -34,11 +34,19 @@ const UserService = {
   hashPassword(password) {
     return bcrypt.hash(password, 12)
   },
+  validateEmail(email){
+    if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email))
+    {
+      return (true)
+    }
+      alert("You have entered an invalid email address!")
+      return (false)
+  },
   serializeUser(user) {
     return {
       id: user.id,
-      name: user.name,
       username: user.username,
+      email: user.email,
     }
   },
 }
