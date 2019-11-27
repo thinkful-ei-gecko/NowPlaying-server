@@ -1,13 +1,7 @@
-ALTER TABLE "books"
-  DROP COLUMN IF EXISTS comment_id;
+DROP TABLE IF EXISTS "book_comments";
 
-ALTER TABLE "podcasts"
-  DROP COLUMN IF EXISTS comment_id;
+DROP TABLE IF EXISTS "podcast_comments";
 
-ALTER TABLE "tv_shows"
-  DROP COLUMN IF EXISTS comment_id;
+DROP TABLE IF EXISTS "tv_show_comments";
 
-ALTER TABLE "movies"
-  DROP COLUMN IF EXISTS comment_id;
-
-DROP TABLE IF EXISTS "comments";
+DROP TABLE IF EXISTS "movie_comments";
