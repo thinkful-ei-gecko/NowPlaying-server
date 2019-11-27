@@ -91,5 +91,5 @@ VALUES
     (2, 'another test comment', 'admin', '2017-03-09 11:30:59', 1),
     (3, 'hello from EJ', 'demo', '1960-09-09 20:40:59', 3),
     (4, 'random comment', 'admin', '2010-02-10 10:30:59', 4);
--- SELECT setval('user_id_seq', (SELECT MAX(id) from "user"));
+
 COMMIT;

@@ -18,8 +18,8 @@ const serializeComment = comment => ({
 commentsRouter
   .route('/:comment_thread')
   .post(requireAuth, jsonParser, (req, res, next) => {
-    const { user_comment } = req.body;
-    const newComment = { user_comment };
+    const { user_comment, media_id } = req.body;
+    const newComment = { user_comment, media_id };
 
     if(!user_comment) {
       return res.status(400).json( {error: 'User comment is required'} );

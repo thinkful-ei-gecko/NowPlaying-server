@@ -17,7 +17,7 @@ const serializeThread = thread => ({
 });
 
 mainRouter
-  .route('/')
+  .route('/') //tested and works in postman
   .get((req,res,next) => {
     const db = req.app.get('db');
     MainService.getAllCategories(db)
@@ -28,8 +28,8 @@ mainRouter
   });
 
 mainRouter
-  .route('/:thread')
-  .get((req,res,next) => {
+  .route('/:thread') 
+  .get((req,res,next) => {//tested and works in postman
     const db = req.app.get('db');
     let mediaType = req.params.thread;
 
@@ -39,16 +39,32 @@ mainRouter
       })
       .catch(next);
   })
-  .post(requireAuth, jsonParser, (req,res,next) => {
-    const { title, event_description } = req.body;
-    const newThread = { title, event_description };
+  .post(requireAuth, jsonParser, (req,res,next) => {//need to fix
+    const { title, event_description, id } = req.body;
+    const newThread = { title, event_description, id };
 
     if(!title) {
       return res.status(400).json( {error: 'Title is required'} );
     }
-    
+
     const db = req.app.get('db');
     let mediaType = req.params.thread;
+    //correct media type being given
+    let media_id;
+    if(mediaType === 'movies') {
+      media_id = 1;
+    }
+    if(mediaType === 'tv_shows') {
+      media_id = 2;
+    }
+    if(mediaType === 'podcasts') {
+      media_id = 3;
+    }
+    if(mediaType === 'books') {
+      media_id = 4;
+    }
+
+    newThread.media_id = media_id;
 
     MainService.insertNewThread(db, mediaType, newThread)
       .then(thread => {
@@ -62,7 +78,7 @@ mainRouter
 
 mainRouter
   .route('/:thread/:id')
-  .get((req,res,next) => {
+  .get((req,res,next) => { //tested and works in postman
     const db = req.app.get('db');
     let mediaType = req.params.thread;
     let id = req.params.id;
@@ -74,11 +90,11 @@ mainRouter
       .catch(next);    
   });
 
-mainRouter
-  .route('/:thread/:id/movie_comments')
+mainRouter //below endpoints work in postman
+  .route('/:thread/:id/movie_comments') 
   .get((req,res,next) => {
     const db = req.app.get('db');
-    let commentTable = 'movies';
+    let commentTable = 'movie_comments';
     let media_id = req.params.id;
     MainService.getCommentsForThread(db, commentTable, media_id)
       .then(comments => {
@@ -91,7 +107,7 @@ mainRouter
   .route('/:thread/:id/tv_show_comments')
   .get((req,res,next) => {
     const db = req.app.get('db');
-    let commentTable = 'tv_shows';
+    let commentTable = 'tv_show_comments';
     let media_id = req.params.id;
     MainService.getCommentsForThread(db, commentTable, media_id)
       .then(comments => {
@@ -104,7 +120,7 @@ mainRouter
   .route('/:thread/:id/podcast_comments')
   .get((req,res,next) => {
     const db = req.app.get('db');
-    let commentTable = 'podcasts';
+    let commentTable = 'podcast_comments';
     let media_id = req.params.id;
     MainService.getCommentsForThread(db, commentTable, media_id)
       .then(comments => {
@@ -117,7 +133,7 @@ mainRouter
   .route('/:thread/:id/book_comments')
   .get((req,res,next) => {
     const db = req.app.get('db');
-    let commentTable = 'books';
+    let commentTable = 'book_comments';
     let media_id = req.params.id;
     MainService.getCommentsForThread(db, commentTable, media_id)
       .then(comments => {
