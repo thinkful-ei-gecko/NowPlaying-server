@@ -10,11 +10,8 @@ const jsonParser = express.json();
 const serializeThread = thread => ({
   id: thread.id,
   title: xss(thread.title),
-  image: thread.image,
   event_description: xss(thread.event_description),
   date_created: thread.date_created,
-  // last_commented: thread.last_commented,
-  // numberOfComments: thread.numberOfComments
 });
 
 mainRouter
