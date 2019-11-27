@@ -1,0 +1,3 @@
+ALTER TABLE "movies" (
+    media_id INTEGER REFERENCES category(id) ON DELETE SET NULL NOT NULL
+)
