@@ -1,4 +1,4 @@
-CREATE TABLE books (
+CREATE TABLE "books" (
   id SERIAL PRIMARY KEY,
   title TEXT NOT NULL,
   event_description TEXT,

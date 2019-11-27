@@ -1,1 +1,1 @@
-DROP TABLE IF EXISTS tv_shows;
+DROP TABLE IF EXISTS "tv_shows";

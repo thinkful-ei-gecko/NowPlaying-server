@@ -1,4 +1,4 @@
-CREATE TABLE podcasts (
+CREATE TABLE "podcasts"(
   id SERIAL PRIMARY KEY,
   title TEXT NOT NULL,
   event_description TEXT,

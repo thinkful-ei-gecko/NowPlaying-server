@@ -1,1 +1,1 @@
-DROP TABLE IF EXISTS podcasts;
+DROP TABLE IF EXISTS "podcasts";
