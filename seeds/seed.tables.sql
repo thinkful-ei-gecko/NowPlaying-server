@@ -64,28 +64,28 @@ VALUES
     (3, 'Harry Potter and the Chamber of Secrets', 'Second Harry Potter book', '2017-09-19', 4),
     (4, 'The Very Hungry Caterpillar', 'He is hungry', '2019-12-02', 4);
 
-INSERT INTO "movie_comments"("id", "user_comment", "user_name", "date_created", "movie_id")
+INSERT INTO "movie_comments"("id", "user_comment", "user_name", "date_created", "media_id")
 VALUES
     (1, 'test comment 1', 'demo', '2019-09-09 01:30:59', 1),
     (2, 'another test comment', 'admin', '2017-03-09 11:30:59', 1),
     (3, 'hello from EJ', 'demo', '1960-09-09 20:40:59', 3),
     (4, 'random comment', 'admin', '2010-02-10 10:30:59', 4);
 
-INSERT INTO "tv_show_comments"("id", "user_comment", "user_name", "date_created", "tv_show_id")
+INSERT INTO "tv_show_comments"("id", "user_comment", "user_name", "date_created", "media_id")
 VALUES
     (1, 'test comment 1', 'demo', '2019-09-09 01:30:59', 1),
     (2, 'another test comment', 'admin', '2017-03-09 11:30:59', 2),
     (3, 'hello from EJ', 'demo', '1960-09-09 20:40:59', 2),
     (4, 'random comment', 'admin', '2010-02-10 10:30:59', 4);
 
-INSERT INTO "podcast_comments"("id", "user_comment", "user_name", "date_created", "podcast_id")
+INSERT INTO "podcast_comments"("id", "user_comment", "user_name", "date_created", "media_id")
 VALUES
     (1, 'test comment 1', 'demo', '2019-09-09 01:30:59', 1),
     (2, 'another test comment', 'admin', '2017-03-09 11:30:59', 1),
     (3, 'hello from EJ', 'demo', '1960-09-09 20:40:59', 3),
     (4, 'random comment', 'admin', '2010-02-10 10:30:59', 4);
 
-INSERT INTO "book_comments"("id", "user_comment", "user_name", "date_created", "book_id")
+INSERT INTO "book_comments"("id", "user_comment", "user_name", "date_created", "media_id")
 VALUES
     (1, 'test comment 1', 'demo', '2019-09-09 01:30:59', 1),
     (2, 'another test comment', 'admin', '2017-03-09 11:30:59', 1),

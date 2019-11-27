@@ -12,6 +12,8 @@ const serializeThread = thread => ({
   title: xss(thread.title),
   event_description: xss(thread.event_description),
   date_created: thread.date_created,
+  media_id: thread.media_id,
+  comment_id: thread.comment_id
 });
 
 mainRouter
@@ -24,7 +26,6 @@ mainRouter
       })
       .catch(next);
   });
-
 
 mainRouter
   .route('/:thread')
@@ -39,13 +40,13 @@ mainRouter
       .catch(next);
   })
   .post(requireAuth, jsonParser, (req,res,next) => {
-    const { title, event_description, date } = req.body;
-    const newThread = { title, event_description, date };
+    const { title, event_description } = req.body;
+    const newThread = { title, event_description };
 
     if(!title) {
       return res.status(400).json( {error: 'Title is required'} );
     }
-
+    
     const db = req.app.get('db');
     let mediaType = req.params.thread;
 
@@ -59,4 +60,71 @@ mainRouter
       .catch(next);
   });
 
-  module.exports = mainRouter
+mainRouter
+  .route('/:thread/:id')
+  .get((req,res,next) => {
+    const db = req.app.get('db');
+    let mediaType = req.params.thread;
+    let id = req.params.id;
+
+    MainService.getIndividualThread(db, mediaType, id)
+      .then(thread => {
+        return res.status(200).json(thread);
+      })
+      .catch(next);    
+  });
+
+mainRouter
+  .route('/:thread/:id/movie_comments')
+  .get((req,res,next) => {
+    const db = req.app.get('db');
+    let commentTable = 'movies';
+    let media_id = req.params.id;
+    MainService.getCommentsForThread(db, commentTable, media_id)
+      .then(comments => {
+        return res.status(200).json(comments);
+      })
+      .catch(next);
+  });
+
+mainRouter
+  .route('/:thread/:id/tv_show_comments')
+  .get((req,res,next) => {
+    const db = req.app.get('db');
+    let commentTable = 'tv_shows';
+    let media_id = req.params.id;
+    MainService.getCommentsForThread(db, commentTable, media_id)
+      .then(comments => {
+        return res.status(200).json(comments);
+      })
+      .catch(next);
+  });
+
+mainRouter
+  .route('/:thread/:id/podcast_comments')
+  .get((req,res,next) => {
+    const db = req.app.get('db');
+    let commentTable = 'podcasts';
+    let media_id = req.params.id;
+    MainService.getCommentsForThread(db, commentTable, media_id)
+      .then(comments => {
+        return res.status(200).json(comments);
+      })
+      .catch(next);
+  });
+
+mainRouter
+  .route('/:thread/:id/book_comments')
+  .get((req,res,next) => {
+    const db = req.app.get('db');
+    let commentTable = 'books';
+    let media_id = req.params.id;
+    MainService.getCommentsForThread(db, commentTable, media_id)
+      .then(comments => {
+        return res.status(200).json(comments);
+      })
+      .catch(next);
+  });
+
+  module.exports = mainRouter;
+
