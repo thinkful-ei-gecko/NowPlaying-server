@@ -1,8 +1,8 @@
 const MainService = {
     getAllCategories(db) {
       return db
-        .from('category')
-        .select('*');
+        .select('*')
+        .from('category');
     },
   
     getAllEntriesByMediaType(db, mediaType) {
