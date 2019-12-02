@@ -29,7 +29,7 @@ function makeUsersArray() {
       id: 2,
       username: 'test-user-2',
       password: 'password',
-      email: 'testemail1@email.com'
+      email: 'testemail2@email.com'
     },
   ]
 }
