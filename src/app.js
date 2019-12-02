@@ -5,9 +5,9 @@ const cors = require('cors');
 const helmet = require('helmet');
 const { NODE_ENV } = require('./config');
 const errorHandler = require('./middleware/error-handler');
-const authRouter = require('./auth /auth-router');
+const authRouter = require('./auth/auth-router');
 const userRouter = require('./user/user-router');
-const mainRouter = require('./main /main-router');
+const mainRouter = require('./main/main-router');
 const commentsRouter = require ('./comments/comments-router');
 
 const app = express();
