@@ -37,9 +37,9 @@ VALUES
 INSERT INTO "movies"("title", "event_description", "date_created", "media_id", "media_runtime")
 VALUES
     ('Lord of the Rings', 'LotR is a fantasy movie about a fellowship trying to stop the dark forces of Sauron', '2019-01-15', 1, 180),
-    ('Inception', 'Prepare to have your mind incepted', '2018-04-07', 150),
-    ('Goodfellas', 'A gangster movie', '2018-08-09', 120),
-    ('Frozen', 'Let it goooooo', '2019-08-08', 110);
+    ('Inception', 'Prepare to have your mind incepted', '2018-04-07', 1, 150),
+    ('Goodfellas', 'A gangster movie', '2018-08-09', 3, 120),
+    ('Frozen', 'Let it goooooo', '2019-08-08', 4, 110);
 
 INSERT INTO "tv_shows"("title", "event_description", "date_created", "media_id",  "media_runtime")
 VALUES
@@ -81,7 +81,7 @@ VALUES
     ('test comment 1', 'demo', '2019-09-09 01:30:59', 1, 600),
     ('another test comment', 'admin', '2017-03-09 11:30:59', 1, 1700),
     ('hello from EJ', 'demo', '1960-09-09 20:40:59', 3, 2800),
-    ('random comment', 'admin', '2010-02-10 10:30:59', 4, 3500 ;
+    ('random comment', 'admin', '2010-02-10 10:30:59', 4, 3500);
 
 INSERT INTO "book_comments"("user_comment", "user_name", "date_created", "media_id", "comment_timestamp")
 VALUES
