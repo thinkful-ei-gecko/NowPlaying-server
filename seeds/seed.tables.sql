@@ -27,12 +27,12 @@ VALUES
         'admin@email.com'
     );
 
-INSERT INTO "category"("media_type")
+INSERT INTO "category"("media_type", "media_name")
 VALUES 
-    ('movies'),
-    ('tv_shows'),
-    ('podcasts'),
-    ('books');
+    ('movies', 'movies'),
+    ('tv_shows', 'tv shows'),
+    ('podcasts', 'podcasts'),
+    ('books', 'books');
 
 INSERT INTO "movies"("title", "event_description", "date_created", "media_id")
 VALUES
