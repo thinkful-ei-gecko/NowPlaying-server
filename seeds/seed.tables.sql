@@ -41,7 +41,7 @@ VALUES
     ('Goodfellas', 'A gangster movie', '2018-08-09', 3, '146 min', '21 Sep 1990', 'Drama', '8.7', 'R', 'https://m.media-amazon.com/images/M/MV5BY2NkZjEzMDgtN2RjYy00YzM1LWI4ZmQtMjIwYjFjNmI3ZGEwXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_SX300.jpg'),
     ('Frozen', 'Let it goooooo', '2019-08-08', 4, '102 min', '27 Nov 2013', 'Animation', '7.5', 'PG', 'https://m.media-amazon.com/images/M/MV5BMTQ1MjQwMTE5OF5BMl5BanBnXkFtZTgwNjk3MTcyMDE@._V1_SX300.jpg');
 
-INSERT INTO "tv_shows"("title", "event_description", "date_created", "media_id")
+INSERT INTO "tv_shows"("title", "event_description", "date_created", "media_id", "media_runtime")
 VALUES
     ('Game of Thrones', 'People fighting over a chair', '2019-05-19', 2, '45 min'),
     ('The Boys', 'A group of lads try to take down corrupt superheroes', '2018-02-12', 2, '45 min'),
@@ -91,8 +91,3 @@ VALUES
     ('random comment', 'admin', '2010-02-10 10:30:59', 4, 1600);
 
 COMMIT;
-
-    ('Lord of the Rings', 'LotR is a fantasy movie about a fellowship trying to stop the dark forces of Sauron', '2019-01-15', 1, "178 min", "19 Dec 2001", "Fantasy", "8.8", "PG-13", "https://m.media-amazon.com/images/M/MV5BN2EyZjM3NzUtNWUzMi00MTgxLWI0NTctMzY4M2VlOTdjZWRiXkEyXkFqcGdeQXVyNDUzOTQ5MjY@._V1_SX300.jpg"),
-    ('Inception', 'Prepare to have your mind incepted', '2018-04-07', 1, "148 min", "16 Jul 2010", "Action", "8.8", "PG-13", "https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_SX300.jpg"),
-    ('Goodfellas', 'A gangster movie', '2018-08-09', 3, "146 min", "21 Sep 1990", "Drama", "8.7", "R", "https://m.media-amazon.com/images/M/MV5BY2NkZjEzMDgtN2RjYy00YzM1LWI4ZmQtMjIwYjFjNmI3ZGEwXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_SX300.jpg"),
-    ('Frozen', 'Let it goooooo', '2019-08-08', 4, "102 min", "27 Nov 2013", "Animation", "7.5", "PG", "https://m.media-amazon.com/images/M/MV5BMTQ1MjQwMTE5OF5BMl5BanBnXkFtZTgwNjk3MTcyMDE@._V1_SX300.jpg");
