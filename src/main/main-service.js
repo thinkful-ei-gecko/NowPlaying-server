@@ -31,7 +31,7 @@ const MainService = {
       .into(mediaType)
       .returning('*')
       .then(res => res[0]);
-  },
+  }
 };
 
 module.exports = MainService;

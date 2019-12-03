@@ -39,12 +39,15 @@ mainRouter
       })
       .catch(next);
   })
-  .post(requireAuth, jsonParser, (req,res,next) => {//need to fix
-    const { title, event_description, id } = req.body;
-    const newThread = { title, event_description, id };
+  .post(requireAuth, jsonParser, (req,res,next) => {
+    const { title, event_description, id, media_runtime } = req.body;
+    const newThread = { title, event_description, id, media_runtime };
 
     if(!title) {
       return res.status(400).json( {error: 'Title is required'} );
+    }
+    if(!media_runtime) {
+      return res.status(400).json( {error: 'Media runtime is required'} );
     }
 
     const db = req.app.get('db');
