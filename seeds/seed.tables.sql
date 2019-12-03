@@ -34,33 +34,33 @@ VALUES
     ('podcasts', 'podcasts'),
     ('books', 'books');
 
-INSERT INTO "movies"("title", "event_description", "date_created", "media_id", "media_runtime")
+INSERT INTO "movies"("title", "event_description", "date_created", "media_id", "media_runtime", "release_date", "genre", "imdb_rating", "mpaa_rating", "poster")
 VALUES
-    ('Lord of the Rings', 'LotR is a fantasy movie about a fellowship trying to stop the dark forces of Sauron', '2019-01-15', 1, 180),
-    ('Inception', 'Prepare to have your mind incepted', '2018-04-07', 1, 150),
-    ('Goodfellas', 'A gangster movie', '2018-08-09', 3, 120),
-    ('Frozen', 'Let it goooooo', '2019-08-08', 4, 110);
+    ('Lord of the Rings', 'LotR is a fantasy movie about a fellowship trying to stop the dark forces of Sauron', '2019-01-15', 1, "178 min", "19 Dec 2001", "Fantasy", "8.8", "PG-13", "https://m.media-amazon.com/images/M/MV5BN2EyZjM3NzUtNWUzMi00MTgxLWI0NTctMzY4M2VlOTdjZWRiXkEyXkFqcGdeQXVyNDUzOTQ5MjY@._V1_SX300.jpg"),
+    ('Inception', 'Prepare to have your mind incepted', '2018-04-07', 1, "148 min", "16 Jul 2010", "Action", "8.8", "PG-13", "https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_SX300.jpg"),
+    ('Goodfellas', 'A gangster movie', '2018-08-09', 3, "146 min", "21 Sep 1990", "Drama", "8.7", "R", "https://m.media-amazon.com/images/M/MV5BY2NkZjEzMDgtN2RjYy00YzM1LWI4ZmQtMjIwYjFjNmI3ZGEwXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_SX300.jpg"),
+    ('Frozen', 'Let it goooooo', '2019-08-08', 4, "102 min", "27 Nov 2013", "Animation", "7.5", "PG", "https://m.media-amazon.com/images/M/MV5BMTQ1MjQwMTE5OF5BMl5BanBnXkFtZTgwNjk3MTcyMDE@._V1_SX300.jpg");
 
-INSERT INTO "tv_shows"("title", "event_description", "date_created", "media_id",  "media_runtime")
+INSERT INTO "tv_shows"("title", "event_description", "date_created", "media_id")
 VALUES
-    ('Game of Thrones', 'People fighting over a chair', '2019-05-19', 2, 45),
-    ('The Boys', 'A group of lads try to take down corrupt superheroes', '2018-02-12', 2, 45),
-    ('Stranger Things', 'A group of young lads investigate mysterious happenings in the town of Hawkins, Indiana', '2018-12-12', 2, 45),
-    ('Avatar: The Last Airbender', 'A group of young lads embark on an adventure to save the world from the Fire Nation', '2019-07-10', 2, 45);
+    ('Game of Thrones', 'People fighting over a chair', '2019-05-19', 2, "45 min"),
+    ('The Boys', 'A group of lads try to take down corrupt superheroes', '2018-02-12', 2, "45 min"),
+    ('Stranger Things', 'A group of young lads investigate mysterious happenings in the town of Hawkins, Indiana', '2018-12-12', 2, "45 min"),
+    ('Avatar: The Last Airbender', 'A group of young lads embark on an adventure to save the world from the Fire Nation', '2019-07-10', 2, "45 min");
 
 INSERT INTO "podcasts"("title", "event_description", "date_created", "media_id",  "media_runtime")
 VALUES
-    ('Crime Junkie', 'Podcast about crime', '2019-03-29', 3, 60),
-    ('The Joe Rogan Experience', 'Joe Rogan being Joe Rogan', '2018-09-12', 3, 60),
-    ('This Land', 'Podcast about history???', '2018-10-11', 3, 60),
-    ('Serial', 'Podcast about serial killers', '2019-11-08', 3, 60);
+    ('Crime Junkie', 'Podcast about crime', '2019-03-29', 3, "60 min"),
+    ('The Joe Rogan Experience', 'Joe Rogan being Joe Rogan', '2018-09-12', 3, "60 min"),
+    ('This Land', 'Podcast about history???', '2018-10-11', 3, "60 min"),
+    ('Serial', 'Podcast about serial killers', '2019-11-08', 3, "60 min");
 
 INSERT INTO "books"("title", "event_description", "date_created", "media_id",  "media_runtime")
 VALUES
-    ('Where the Red Fern Grows', 'A sad book with dogs', '2019-04-21', 4, 30),
-    ('Born a Crime', 'Trevor Noah autobiography', '2018-05-22', 4, 30),
-    ('Harry Potter and the Chamber of Secrets', 'Second Harry Potter book', '2017-09-19', 4, 30),
-    ('The Very Hungry Caterpillar', 'He is hungry', '2019-12-02', 4, 30);
+    ('Where the Red Fern Grows', 'A sad book with dogs', '2019-04-21', 4, "30 min"),
+    ('Born a Crime', 'Trevor Noah autobiography', '2018-05-22', 4, "30 min"),
+    ('Harry Potter and the Chamber of Secrets', 'Second Harry Potter book', '2017-09-19', 4, "30 min"),
+    ('The Very Hungry Caterpillar', 'He is hungry', '2019-12-02', 4, "30 min");
 
 INSERT INTO "movie_comments"("user_comment", "user_name", "date_created", "media_id", "comment_timestamp")
 VALUES
