@@ -29,10 +29,10 @@ VALUES
 
 INSERT INTO "category"("media_type", "media_name")
 VALUES 
-    ('movies', 'movies'),
-    ('tv_shows', 'tv shows'),
-    ('podcasts', 'podcasts'),
-    ('books', 'books');
+    ('movies', 'Movies'),
+    ('tv_shows', 'TV Shows'),
+    ('podcasts', 'Podcasts'),
+    ('books', 'Books');
 
 INSERT INTO "movies"("title", "event_description", "date_created", "media_id", "media_runtime", "release_date", "genre", "imdb_rating", "mpaa_rating", "poster")
 VALUES
