@@ -8,7 +8,8 @@ const errorHandler = require('./middleware/error-handler');
 const authRouter = require('./auth/auth-router');
 const userRouter = require('./user/user-router');
 const mainRouter = require('./main/main-router');
-const commentsRouter = require ('./comments/comments-router');
+const commentsRouter = require('./comments/comments-router');
+const happeningRouter = require('./happening/happening-router');
 
 const app = express();
 const morganOption = (NODE_ENV === 'production') ? 'tiny' : 'common';
@@ -20,6 +21,7 @@ app.use('/api/auth', authRouter); //login
 app.use('/api/user', userRouter); //registration
 app.use('/api/main', mainRouter); //main
 app.use('/api/comments', commentsRouter); //comments
+app.use('/api/happening', happeningRouter); // happenings
 
 app.get('/', (req, res) => {
     res.status(200).send('Hello, world!')
