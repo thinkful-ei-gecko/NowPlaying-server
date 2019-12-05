@@ -90,4 +90,12 @@ VALUES
     ('hello from EJ', 'demo', '1960-09-09 20:40:59', 3, 1000),
     ('random comment', 'admin', '2010-02-10 10:30:59', 4, 1600);
 
+INSERT INTO "happening"("media_type", "media_title", "username", "user_comment", "media_title_comments")
+VALUES
+    ('movies', 'Frozen', null, null, null),
+    ('movies', 'Cinderalla', null, null, null),
+    (null, null, 'demo', 'this is a comment from demo', 'Frozen'),
+    (null, null, 'admin', 'random comment from admin', 'Cinderalla'),
+    (null, null, 'admin', 'another comment from admin', 'Frozen');
+
 COMMIT;
