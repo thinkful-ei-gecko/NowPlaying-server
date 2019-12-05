@@ -4,5 +4,6 @@ CREATE TABLE "happening"(
     media_title TEXT DEFAULT NULL,
     username TEXT DEFAULT NULL,
     user_comment TEXT DEFAULT NULL,
-    media_title_comments TEXT DEFAULT NULL
+    media_title_comments TEXT DEFAULT NULL,
+    date_created TIMESTAMP DEFAULT now() NOT NULL
 );
