@@ -42,4 +42,17 @@ happeningRouter
       .catch(next);
   });
 
+happeningRouter
+  .route('/:id')
+  .delete((req,res,next) => {
+    const db = req.app.get('db');
+    let id = req.params.id;
+
+    HappeningService.deleteHappeningEvent(db,id)
+      .then(() => {
+        return res.status(204).end();
+      })
+      .catch(next);
+  });
+
 module.exports = happeningRouter;
