@@ -16,6 +16,12 @@ const HappeningService = {
       .into('happening')
       .returning('*')
       .then(res => res[0]);
+  },
+  deleteHappeningEvent(db, id) {
+    return db
+      .from('happening')
+      .where( {id} )
+      .delete();
   }
 };
 

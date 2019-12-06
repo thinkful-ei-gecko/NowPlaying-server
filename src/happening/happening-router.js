@@ -13,7 +13,8 @@ const serializeHappening = event => ({
   media_title: event.media_title,
   username: event.username,
   user_comment: xss(event.user_comment),
-  media_title_comments: event.media_title_comments
+  media_title_comments: event.media_title_comments,
+  date_created: event.date_created
 });
 
 happeningRouter
@@ -38,6 +39,19 @@ happeningRouter
           .status(201)
           .location(path.posix.join(req.originalUrl, `/${event.id}`))
           .json(serializeHappening(event));
+      })
+      .catch(next);
+  });
+
+happeningRouter
+  .route('/:id')
+  .delete((req,res,next) => {
+    const db = req.app.get('db');
+    let id = req.params.id;
+
+    HappeningService.deleteHappeningEvent(db,id)
+      .then(() => {
+        return res.status(204).end();
       })
       .catch(next);
   });
