@@ -14,7 +14,7 @@ const serializeHappening = event => ({
   username: event.username,
   user_comment: xss(event.user_comment),
   media_title_comments: event.media_title_comments,
-  date_created: new Date(event.date_created)
+  date_created: event.date_created
 });
 
 happeningRouter
