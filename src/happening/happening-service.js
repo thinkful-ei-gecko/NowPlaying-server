@@ -2,7 +2,8 @@ const HappeningService = {
   getAllHappeningEvents(db) {
     return db
       .select('*')
-      .from('happening');
+      .from('happening')
+      .orderBy('date_created', 'desc');
   },
   getIndividualHappeningEvent(db,id) {
     return db
