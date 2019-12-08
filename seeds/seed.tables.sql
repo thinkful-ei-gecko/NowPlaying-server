@@ -93,9 +93,9 @@ VALUES
 INSERT INTO "happening"("media_type", "media_title", "username", "user_comment", "media_title_comments", "date_created")
 VALUES
     ('movies', 'Frozen', null, null, null, '2019-05-04 02:20:19'),
-    (null, null, 'admin', 'another comment from admin', 'Frozen', '1960-09-09 20:40:59'),
-    ('movies', 'Cinderalla', null, null, null, '2017-03-09 11:30:59'),
-    (null, null, 'admin', 'random comment from admin', 'Cinderalla', '2019-09-09 01:30:59'),
-    (null, null, 'demo', 'this is a comment from demo', 'Frozen', '2010-02-10 10:30:59');
+    (null, null, 'admin', 'another comment from admin', 'Frozen', '1960-09-09 20:40:59');
+    -- ('movies', 'Cinderalla', null, null, null, '2017-03-09 11:30:59'),
+    -- (null, null, 'admin', 'random comment from admin', 'Cinderalla', '2019-09-09 01:30:59'),
+    -- (null, null, 'demo', 'this is a comment from demo', 'Frozen', '2010-02-10 10:30:59');
 
 COMMIT;
