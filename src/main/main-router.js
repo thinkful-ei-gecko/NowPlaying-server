@@ -35,6 +35,7 @@ mainRouter
 
     MainService.getAllEntriesByMediaType(db,mediaType)
       .then(mediaTypes => {
+        console.log(mediaTypes);
         return res.status(200).json(mediaTypes);
       })
       .catch(next);
@@ -68,7 +69,6 @@ mainRouter
     }
 
     newThread.media_id = media_id;
-
     MainService.insertNewThread(db, mediaType, newThread)
       .then(thread => {
         return res

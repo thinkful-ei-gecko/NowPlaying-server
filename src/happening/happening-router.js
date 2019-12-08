@@ -14,7 +14,8 @@ const serializeHappening = event => ({
   username: event.username,
   user_comment: xss(event.user_comment),
   media_title_comments: event.media_title_comments,
-  date_created: event.date_created
+  date_created: event.date_created,
+  media_id: event.media_id
 });
 
 happeningRouter
@@ -30,8 +31,8 @@ happeningRouter
   })
   .post(requireAuth, jsonParser, (req,res,next) => {
     const db = req.app.get('db');
-    const { media_type, media_title, username, user_comment, media_title_comments } = req.body;
-    const newHappening = { media_type, media_title, username, user_comment, media_title_comments };
+    const { media_type, media_title, username, user_comment, media_title_comments, media_id } = req.body;
+    const newHappening = { media_type, media_title, username, user_comment, media_title_comments, media_id };
 
     HappeningService.insertHappeningEvent(db, newHappening)
       .then(event => {
