@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 const app = require('../src/app');
 const helpers = require('./test-helpers');
 const mainHelpers = require('./main-helpers');
@@ -11,18 +10,6 @@ describe.only('Comment Endpoints', function () {
     // const testMedia = helpers.makeMediaTypeArray();
     // const testComments = helpers.makeCommentsArray(testUsers);
     const { testUsers, testCategories, testThreads, testComments } = mainHelpers.makeThreadFixtures();
-=======
-const jwt = require('jsonwebtoken');
-const app = require('../src/app');
-const helpers = require('./test-helpers');
-
-
-describe('Comment Endpoints', function () {
-    let db
-  
-    const testUsers = helpers.makeUsersArray()
-    const testUser = testUsers[0]
->>>>>>> date created updated for happening route
   
     before('make knex instance', () => {
       db = helpers.makeKnexInstance()
@@ -36,7 +23,6 @@ describe('Comment Endpoints', function () {
     afterEach('cleanup', () => helpers.cleanTables(db))
 
     /**
-<<<<<<< HEAD
     * @description Posts a user comment
     **/
    describe.only(`POST /api/comments/:comment_thread'`, () => {
@@ -86,10 +72,4 @@ describe('Comment Endpoints', function () {
             )
         })
    })
-=======
-    * @description Posts a user 
-    **/
-    
-
->>>>>>> date created updated for happening route
 })
