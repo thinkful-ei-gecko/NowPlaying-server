@@ -225,6 +225,25 @@ function seedComments(db, comments=[]){
   })
 }
 
+function makeThreadArray(){
+}
+
+function makeCommentsArray(users){
+
+}
+
+function makeMaliciousComment(users, comments, threadId){
+
+}
+
+function makeMaliciousThreadTitle(user){
+
+}
+
+function makeMaliciousThreadDescription(user){
+  
+}
+
 
 module.exports = {
   makeKnexInstance,
