@@ -12,7 +12,7 @@ const serializeHappening = event => ({
   media_type: event.media_type,
   media_title: event.media_title,
   username: event.username,
-  user_comment: xss(event.user_comment), //XSS seems to be breaking the test where null value for user_comment cannot be input..
+  user_comment: xss(event.user_comment),
   media_title_comments: event.media_title_comments,
   date_created: event.date_created,
   media_id: event.media_id
