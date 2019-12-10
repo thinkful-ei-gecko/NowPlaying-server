@@ -35,7 +35,6 @@ mainRouter
 
     MainService.getAllEntriesByMediaType(db,mediaType)
       .then(mediaTypes => {
-        console.log(mediaTypes);
         return res.status(200).json(mediaTypes);
       })
       .catch(next);
@@ -145,5 +144,4 @@ mainRouter
       .catch(next);
   });
 
-  module.exports = mainRouter;
-
+module.exports = mainRouter;
