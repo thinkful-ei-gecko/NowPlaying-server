@@ -226,8 +226,6 @@ function seedComments(db, comments=[]){
   })
 }
 
-function makeThreadArray(){
-}
 
 function makeCommentsArray(users){
   return [
@@ -322,6 +320,35 @@ function seedComments(db, comments=[]){
   })
 }
 
+function makeExpectedThreadComments(comment) {
+  return {
+    id: comment.id,
+    user_comment: comment.user_comment,
+    user_name: comment.user_name,
+    date_created: comment.date_created,
+    comment_timestamp: comment.comment_timestamp,
+    media_id: comment.media_id
+  };
+}
+
+function makeMaliciousComment() {
+  const maliciousComment = {
+    id: 999,
+    user_comment: 'Naughty naughty very naughty <script>alert("xss");</script> Bad image <img src="https://url.to.file.which/does-not.exist" onerror="alert(document.cookie);">. But not <strong>all</strong> bad.',
+    date_created: '2019-12-08T09:55:55.000Z',
+    comment_timestamp: 200,
+    media_id: 1
+  };
+  const expectedComment = {
+    ...makeExpectedThreadComments(maliciousComment),
+    user_comment: 'Naughty naughty very naughty &lt;script&gt;alert(\"xss\");&lt;/script&gt; Bad image <img src="https://url.to.file.which/does-not.exist">. But not <strong>all</strong> bad.',
+  };
+  return {
+    maliciousComment,
+    expectedComment,
+  };
+}
+
 
 module.exports = {
   makeKnexInstance,
@@ -331,7 +358,8 @@ module.exports = {
   makeCommentsArray,
   makeExpectedMediaType,
   makeExpectedMediaTypeComments,
-
+  makeExpectedThreadComments,
+  makeMaliciousComment,
   seedMediaTables,
   seedComments,
   seedUsers,

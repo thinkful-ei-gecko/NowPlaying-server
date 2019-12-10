@@ -3,13 +3,13 @@ const helpers = require('./test-helpers');
 const mainHelpers = require('./main-helpers');
 
 
-describe.only('Comment Endpoints', function () {
+describe('Comment Endpoints', function () {
     let db
   
-    // const testUsers = helpers.makeUsersArray();
-    // const testMedia = helpers.makeMediaTypeArray();
-    // const testComments = helpers.makeCommentsArray(testUsers);
-    const { testUsers, testCategories, testThreads, testComments } = mainHelpers.makeThreadFixtures();
+    const testUsers = helpers.makeUsersArray();
+    const testMedia = helpers.makeMediaTypeArray();
+    //const testComments = helpers.makeCommentsArray(testUsers);
+    const { testCategories, testThreads, testComments } = mainHelpers.makeThreadFixtures();
   
     before('make knex instance', () => {
       db = helpers.makeKnexInstance()
@@ -26,50 +26,91 @@ describe.only('Comment Endpoints', function () {
     * @description Posts a user comment
     **/
    describe.only(`POST /api/comments/:comment_thread'`, () => {
-    //    beforeEach('insert media', () => 
-    //         helpers.seedMediaTables(
-    //             db,
-    //             testUsers,
-    //             testMedia,
-    //         )
-    //     )
         beforeEach('insert comments', () =>
-            mainHelpers.seedThreads(
+            mainHelpers.seedThreadComments(
                 db,
-                testUsers, testCategories, testThreads
+                testUsers, 
+                testCategories, 
+                testThreads,
+                testComments,
             )
         )
- 
     it(`creates a comment, responding with 201 and the new comment`, function() {
         this.retries(3)
-        const testMedia = testMedia[0]
         const testUser = testUsers[0]
         const newComment = {
             user_comment: 'Test new comment',
-            media_id: testMedia.id,
+            user_name: 'test-user-1',
+            date_created: '2019-12-10T19:11:36.000Z',
+            comment_timestamp: 200,
+            media_id: 1,
         }
-
+        const comment_thread = 'movie_comments';
         return supertest(app)
             .post(`/api/comments/${comment_thread}`)
-            .set('Authorization', helpers.makeAuthHeader(testUser))
             .send(newComment)
+            .set('Authorization', helpers.makeAuthHeader(testUser))
             .expect(201)
             .expect(res => {
-            expect(res.body).to.have.property('id')
-            expect(res.body.user_comment).to.eql(newComment.user_comment)
-            expect(res.body.media_id).to.eql(newComment.media_id)
+                expect(res.body.user_comment).to.eql(newComment.user_comment)
+                expect(res.body.user_name).to.eql(newComment.user_name)
+                //expect(res.body.date_created).to.eql(newComment.date_created)
+                //expect(res.body.comment_timestamp).to.eql(newComment.comment_timestamp)
+                expect(res.body.media_id).to.eql(newComment.media_id)
             })
-            .expect(res =>
-            db
-                .from('movie_comments')
-                .select('*')
-                .where({ id: res.body.id })
-                .first()
-                .then(row => {
-                expect(row.user_comment).to.eql(newComment.user_comment)
-                expect(row.media_id).to.eql(newComment.media_id)
-                })
+    })
+    it('responds with 400 missing user comment if not supplied', () => {
+        const newCommentMissingUserComment = {
+            user_name: 'test-user-1',
+            date_created: '2019-12-10T19:11:36.000Z',
+            comment_timestamp: 200,
+            media_id: 1,
+        };
+        const comment_thread = 'movie_comments';
+        return supertest(app)
+            .post(`/api/comments/${comment_thread}`)
+            .send(newCommentMissingUserComment)
+            .set('Authorization', mainHelpers.makeAuthHeader(testUsers[0]))
+            .expect(400, {error: 'User comment is required'});
+    });
+    it('responds with 400 missing user comment if not supplied', () => {
+        const newCommentMissingTimestamp = {
+            user_comment: 'Test new comment',
+            user_name: 'test-user-1',
+            date_created: '2019-12-10T19:11:36.000Z',
+            media_id: 1,
+        };
+        const comment_thread = 'movie_comments';
+        return supertest(app)
+            .post(`/api/comments/${comment_thread}`)
+            .send(newCommentMissingTimestamp)
+            .set('Authorization', mainHelpers.makeAuthHeader(testUsers[0]))
+            .expect(400, {error: 'Comment timestamp is required'});
+    });
+    it('removes XSS attack content from response', () => { 
+        before('Insert comments', () => 
+            mainHelpers.seedThreadComments(
+                db,
+                testUsers, 
+                testCategories, 
+                testThreads,
+                testComments,
             )
-        })
+        );
+        const { maliciousComment, expectedComment } = helpers.makeMaliciousComment();
+        const comment_thread = 'movie_comments';
+  
+        return supertest(app)
+          .post(`/api/comments/${comment_thread }`)
+          .send(maliciousComment)
+          .set('Authorization', mainHelpers.makeAuthHeader(testUsers[0]))
+          .expect(201)
+          .expect(res => {
+            expect(res.body.user_comment).to.eql(expectedComment.user_comment)
+            expect(res.body.user_name).to.eql(expectedComment.user_name)
+            // expect(res.body.date_created).to.eql(expectedComment.date_created);
+            expect(res.body.media_id).to.eql(expectedComment.media_id);
+          });
+      });
    })
 })
