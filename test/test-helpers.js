@@ -196,7 +196,7 @@ function makeExpectedMediaTypeComments(users, mediaId, comments) {
   })
 }
 
-function seedMediaTables(db, media, users, comments=[]){
+function seedMediaTables(db, media, users){
   return db.transaction(async trx => {
     await seedUsers(trx, users)
     await trx.into('movies').insert(media)
@@ -204,13 +204,13 @@ function seedMediaTables(db, media, users, comments=[]){
     `SELECT setval('movies_id_seq', ?)`,
     [media[media.length - 1].id],
     )
-    if(comments.length) {
-      await trx.into('movie_comments').insert(comments)
-      await trx.raw(
-        `SELECT setval('movie_comments_id_seq', ?)`,
-        [comments[comments.length - 1].id],
-      )
-    }
+    // if(comments.length) {
+    //   await trx.into('movie_comments').insert(comments)
+    //   await trx.raw(
+    //     `SELECT setval('movie_comments_id_seq', ?)`,
+    //     [comments[comments.length - 1].id],
+    //   )
+    // }
   })
 }
 
