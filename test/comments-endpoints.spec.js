@@ -3,7 +3,7 @@ const helpers = require('./test-helpers');
 const mainHelpers = require('./main-helpers');
 
 
-describe.only('Comment Endpoints', function () {
+describe('Comment Endpoints', function () {
     let db
   
     const testUsers = helpers.makeUsersArray();
