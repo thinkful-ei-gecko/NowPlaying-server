@@ -1,13 +1,15 @@
 const app = require('../src/app');
 const helpers = require('./test-helpers');
+const mainHelpers = require('./main-helpers');
 
 
 describe.only('Comment Endpoints', function () {
     let db
   
-    const testUsers = helpers.makeUsersArray();
-    const testMedia = helpers.makeMediaTypeArray();
-    const testComments = helpers.makeCommentsArray(testUsers);
+    // const testUsers = helpers.makeUsersArray();
+    // const testMedia = helpers.makeMediaTypeArray();
+    // const testComments = helpers.makeCommentsArray(testUsers);
+    const { testUsers, testCategories, testThreads, testComments } = mainHelpers.makeThreadFixtures();
   
     before('make knex instance', () => {
       db = helpers.makeKnexInstance()
@@ -23,7 +25,7 @@ describe.only('Comment Endpoints', function () {
     /**
     * @description Posts a user comment
     **/
-   describe.only(`POST /api/comments/'`, () => {
+   describe.only(`POST /api/comments/:comment_thread'`, () => {
     //    beforeEach('insert media', () => 
     //         helpers.seedMediaTables(
     //             db,
@@ -32,11 +34,9 @@ describe.only('Comment Endpoints', function () {
     //         )
     //     )
         beforeEach('insert comments', () =>
-            helpers.seedComments(
+            mainHelpers.seedThreads(
                 db,
-                testComments,
-                testUsers,
-                testMedia
+                testUsers, testCategories, testThreads
             )
         )
  
@@ -48,9 +48,9 @@ describe.only('Comment Endpoints', function () {
             user_comment: 'Test new comment',
             media_id: testMedia.id,
         }
-        console.log(newComment);
+
         return supertest(app)
-            .post('/api/comments/')
+            .post(`/api/comments/${comment_thread}`)
             .set('Authorization', helpers.makeAuthHeader(testUser))
             .send(newComment)
             .expect(201)
