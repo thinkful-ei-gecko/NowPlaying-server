@@ -25,7 +25,7 @@ describe('Comment Endpoints', function () {
     /**
     * @description Posts a user comment
     **/
-   describe.only(`POST /api/comments/:comment_thread'`, () => {
+   describe(`POST /api/comments/:comment_thread'`, () => {
         beforeEach('insert comments', () =>
             mainHelpers.seedThreadComments(
                 db,
