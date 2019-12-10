@@ -12,7 +12,7 @@ const serializeHappening = event => ({
   media_type: event.media_type,
   media_title: event.media_title,
   username: event.username,
-  user_comment: xss(event.user_comment),
+  user_comment: xss(event.user_comment), //XSS seems to be breaking the test where null value for user_comment cannot be input..
   media_title_comments: event.media_title_comments,
   date_created: event.date_created,
   media_id: event.media_id
@@ -34,6 +34,13 @@ happeningRouter
     const { media_type, media_title, username, user_comment, media_title_comments, media_id } = req.body;
     const newHappening = { media_type, media_title, username, user_comment, media_title_comments, media_id };
 
+    if(!media_type) {
+      return res.status(400).json( {error: 'Media type is required'} );
+    }
+    if(!media_id) {
+      return res.status(400).json( {error: 'Media ID is required'} );
+    }
+
     HappeningService.insertHappeningEvent(db, newHappening)
       .then(event => {
         return res
@@ -46,6 +53,20 @@ happeningRouter
 
 happeningRouter
   .route('/:id')
+  .all((req,res,next) => {
+    const db = req.app.get('db');
+    let id = req.params.id;
+
+    HappeningService.getIndividualHappeningEvent(db,id)
+      .then(event => {
+        if(!event) {
+          return res.status(404).send({error: 'Event not found'});
+        }
+        res.event = event;
+        next();
+      })
+      .catch(next);
+  })
   .delete((req,res,next) => {
     const db = req.app.get('db');
     let id = req.params.id;
