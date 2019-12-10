@@ -12,8 +12,14 @@ const serializeThread = thread => ({
   title: xss(thread.title),
   event_description: xss(thread.event_description),
   date_created: thread.date_created,
-  media_id: thread.media_id,
-  comment_id: thread.comment_id
+  media_runtime: thread.media_runtime,
+  release_date: thread.release_date,
+  genre: thread.genre,
+  imdb_rating: thread.imdb_rating,
+  mpaa_rating: thread.mpaa_rating,
+  poster: thread.poster,
+  movie_id: thread.movie_id,
+  media_id: thread.media_id
 });
 
 mainRouter
@@ -49,7 +55,7 @@ mainRouter
 
     MainService.getAllEntriesByMediaType(db,mediaType)
       .then(mediaTypes => {
-        return res.status(200).json(mediaTypes);
+        return res.status(200).json(mediaTypes.map(serializeThread));
       })
       .catch(next);
   })
@@ -101,11 +107,11 @@ mainRouter
 
     MainService.getIndividualThread(db, mediaType, id)
       .then(thread => {
-        console.log(thread)
-        if(!thread) {
+        let [ threadObject ] = thread;
+        if(!threadObject) {
           return res.status(404).json( {error: 'Thread was not found'} );
         }
-        return res.status(200).json(thread);
+        return res.status(200).json(thread.map(serializeThread));
       })
       .catch(next);    
   });
