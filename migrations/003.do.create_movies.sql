@@ -9,6 +9,7 @@ CREATE TABLE "movies" (
   imdb_rating INTEGER DEFAULT NULL,
   mpaa_rating TEXT DEFAULT NULL,
   poster TEXT DEFAULT NULL,
+  backdrop TEXT DEFAULT NULL,
   movie_id INTEGER DEFAULT NULL
 );
 
