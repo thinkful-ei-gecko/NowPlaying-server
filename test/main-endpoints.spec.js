@@ -2,7 +2,7 @@ const app = require('../src/app');
 const mainHelpers = require('./main-helpers');
 const knex = require('knex');
 
-describe('Main endpoints', function () {
+describe.only('Main endpoints', function () {
   let db;
 
   const { testUsers, testCategories, testThreads, testComments } = mainHelpers.makeThreadFixtures();
@@ -167,7 +167,9 @@ describe('Main endpoints', function () {
         .expect(res => {
           expect(res.body.title).to.eql(newThread.title);
           expect(res.body.event_description).to.eql(newThread.event_description);
-          // expect(res.body.date_created).to.eql(newThread.date_created);
+          const expectedDate = new Date().toLocaleString('en', { timeZone: 'UTC' })
+          const actualDate = new Date(res.body.date_created).toLocaleString()
+          expect(actualDate).to.eql(expectedDate);
           expect(res.body.media_runtime).to.eql(newThread.media_runtime);
           expect(res.body.release_date).to.eql(newThread.release_date);
           expect(res.body.genre).to.eql(newThread.genre);

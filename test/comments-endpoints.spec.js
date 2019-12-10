@@ -3,7 +3,7 @@ const helpers = require('./test-helpers');
 const mainHelpers = require('./main-helpers');
 
 
-describe.only('Comment Endpoints', function () {
+describe('Comment Endpoints', function () {
     let db
   
     const testUsers = helpers.makeUsersArray();
@@ -54,7 +54,9 @@ describe.only('Comment Endpoints', function () {
             .expect(res => {
                 expect(res.body.user_comment).to.eql(newComment.user_comment)
                 expect(res.body.user_name).to.eql(newComment.user_name)
-                //expect(res.body.date_created).to.eql(newComment.date_created)
+                const expectedDate = new Date().toLocaleString('en', { timeZone: 'UTC' })
+                const actualDate = new Date(res.body.date_created).toLocaleString()
+                expect(actualDate).to.eql(expectedDate)
                 //expect(res.body.comment_timestamp).to.eql(newComment.comment_timestamp)
                 expect(res.body.media_id).to.eql(newComment.media_id)
             })

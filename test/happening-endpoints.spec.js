@@ -120,7 +120,9 @@ describe('Happenings Endpoints', function () {
           expect(res.body.username).to.eql(newHappening.username);
           expect(res.body.user_comment).to.eql(newHappening.user_comment);
           expect(res.body.media_title_comments).to.eql(newHappening.media_title_comments);
-          expect(res.body.date_created).to.eql(newHappening.date_created);
+          const expectedDate = new Date().toLocaleString('en', { timeZone: 'UTC' })
+          const actualDate = new Date(res.body.date_created).toLocaleString()
+          expect(actualDate).to.eql(expectedDate);
           expect(res.body.media_id).to.eql(newHappening.media_id);
           expect(res.body).to.have.property('id');
           expect(res.headers.location).to.eql(`/api/happening/${res.body.id}`);
@@ -141,7 +143,9 @@ describe('Happenings Endpoints', function () {
           expect(res.body.username).to.eql(expectedHappening.username);
           expect(res.body.user_comment).to.eql(expectedHappening.user_comment);
           expect(res.body.media_title_comments).to.eql(expectedHappening.media_title_comments);
-          // expect(res.body.date_created).to.eql(expectedHappening.date_created); //Test that date works on MAC
+          const expectedDate = new Date().toLocaleString('en', { timeZone: 'UTC' })
+          const actualDate = new Date(res.body.date_created).toLocaleString()
+          expect(actualDate).to.eql(expectedDate); //Test that date works on MAC
           expect(res.body.media_id).to.eql(expectedHappening.media_id);
           expect(res.body).to.have.property('id');
           expect(res.headers.location).to.eql(`/api/happening/${res.body.id}`);
