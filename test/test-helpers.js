@@ -324,7 +324,7 @@ function makeExpectedThreadComments(comment) {
   return {
     id: comment.id,
     user_comment: comment.user_comment,
-    user_name: comment.user_name,
+    user_name: 'test-user-1',
     date_created: comment.date_created,
     comment_timestamp: comment.comment_timestamp,
     media_id: comment.media_id
