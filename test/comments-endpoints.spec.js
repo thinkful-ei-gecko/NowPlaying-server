@@ -1,4 +1,4 @@
-const jwt = require('jsonwebtoken');
+//const jwt = require('jsonwebtoken');
 const app = require('../src/app');
 const helpers = require('./test-helpers');
 
@@ -7,8 +7,8 @@ describe('Comment Endpoints', function () {
     let db
   
     const testUsers = helpers.makeUsersArray();
-    const testUser = testUsers[0];
-    const testMedia = helpers.makeMediaTypeArray(testUsers);
+    const testMedia = helpers.makeMediaTypeArray();
+    const testComments = helpers.makeCommentsArray(testUsers);
   
     before('make knex instance', () => {
       db = helpers.makeKnexInstance()
@@ -24,14 +24,23 @@ describe('Comment Endpoints', function () {
     /**
     * @description Posts a user comment
     **/
-   describe.only(`POST /api/comments'`, () => {
-       beforeEach('insert comment', () => 
-            helpers.seedMediaTables(
+   describe.only(`POST /api/comments/'`, () => {
+    //    beforeEach('insert media', () => 
+    //         helpers.seedMediaTables(
+    //             db,
+    //             testUsers,
+    //             testMedia,
+    //         )
+    //     )
+        beforeEach('insert comments', () =>
+            helpers.seedComments(
                 db,
+                testComments,
                 testUsers,
-                testMedia,
+                testMedia
             )
         )
+ 
     it(`creates a comment, responding with 201 and the new comment`, function() {
         this.retries(3)
         const testMedia = testMedia[0]
@@ -40,20 +49,16 @@ describe('Comment Endpoints', function () {
             user_comment: 'Test new comment',
             media_id: testMedia.id,
         }
+        console.log(newComment);
         return supertest(app)
-            .post('/api/comments')
-            .set('Authorization', helpers.makeAuthHeader(testUsers[0]))
+            .post('/api/comments/')
+            .set('Authorization', helpers.makeAuthHeader(testUser))
             .send(newComment)
             .expect(201)
             .expect(res => {
             expect(res.body).to.have.property('id')
-            expect(res.body.user_comment).to.eql(newComment.text)
+            expect(res.body.user_comment).to.eql(newComment.user_comment)
             expect(res.body.media_id).to.eql(newComment.media_id)
-            expect(res.body.user.id).to.eql(testUser.id)
-            expect(res.headers.location).to.eql(`/api/comments/${res.body.id}`)
-            const expectedDate = new Date().toLocaleString('en', { timeZone: 'UTC' })
-            const actualDate = new Date(res.body.date_created).toLocaleString()
-            expect(actualDate).to.eql(expectedDate)
             })
             .expect(res =>
             db
@@ -62,17 +67,10 @@ describe('Comment Endpoints', function () {
                 .where({ id: res.body.id })
                 .first()
                 .then(row => {
-                expect(row.user_comment).to.eql(newComment.text)
+                expect(row.user_comment).to.eql(newComment.user_comment)
                 expect(row.media_id).to.eql(newComment.media_id)
-                expect(row.user_id).to.eql(testUser.id)
-                const expectedDate = new Date().toLocaleString('en', { timeZone: 'UTC' })
-                const actualDate = new Date(row.date_created).toLocaleString()
-                expect(actualDate).to.eql(expectedDate)
                 })
             )
         })
-
    })
-    
-
 })

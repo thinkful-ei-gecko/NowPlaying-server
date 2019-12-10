@@ -80,6 +80,8 @@ function cleanTables(db) {
             trx.raw(`ALTER SEQUENCE tv_show_comments_id_seq minvalue 0 START WITH 1`),
             trx.raw(`ALTER SEQUENCE podcast_comments_id_seq minvalue 0 START WITH 1`),
             trx.raw(`ALTER SEQUENCE book_comments_id_seq minvalue 0 START WITH 1`),
+            trx.raw(`SELECT setval('movies_id_seq', 0)`),
+            trx.raw(`SELECT setval('movie_comments_id_seq', 0)`),
           ])
         )
     )
@@ -136,21 +138,21 @@ function makeCommentsArray(users){
     {
       id: 1,
       user_comment: 'First Test Comment',
-      user_name: users[0].id,
+      user_name: 'demo',
       date_created: '2019-01-01T14:10:50.615Z',
       media_id: 1,
     },
     {
       id: 2,
       user_comment: 'Second Test Comment',
-      user_name: users[1].id,
+      user_name: 'demo',
       date_created: '2019-01-01T14:10:50.615Z',
       media_id: 1,
     }, 
     {
       id: 3,
       user_comment: 'Third Test Comment',
-      user_name: users[2].id,
+      user_name: 'admin',
       date_created: '2019-01-01T14:10:50.615Z',
       media_id: 1,
     }
@@ -203,7 +205,7 @@ function seedMediaTables(db, media, users, comments=[]){
     `SELECT setval('movies_id_seq', ?)`,
     [media[media.length - 1].id],
     )
-    if (comments.length) {
+    if(comments.length) {
       await trx.into('movie_comments').insert(comments)
       await trx.raw(
         `SELECT setval('movie_comments_id_seq', ?)`,
@@ -213,17 +215,16 @@ function seedMediaTables(db, media, users, comments=[]){
   })
 }
 
-// function makeMaliciousComment(users, comments, threadId){
-
-// }
-
-// function makeMaliciousThreadTitle(user){
-
-// }
-
-// function makeMaliciousThreadDescription(user){
-  
-// }
+function seedComments(db, comments=[]){
+  return db.transaction(async trx => {
+    await seedComments(trx, comments)
+    await trx.into('movie_comments').insert(comments)
+    await trx.raw (
+      `SELECT setval('movie_comments_id_seq', ?)`,
+      [comments[comments.length - 1].id],
+      )
+  })
+}
 
 
 module.exports = {
@@ -236,6 +237,7 @@ module.exports = {
   makeExpectedMediaTypeComments,
 
   seedMediaTables,
+  seedComments,
   seedUsers,
   cleanTables,
 }
