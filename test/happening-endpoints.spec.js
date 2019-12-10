@@ -2,7 +2,7 @@ const app = require('../src/app');
 const happeningHelpers = require('./happening-helpers');
 const knex = require('knex');
 
-describe.only('Happenings Endpoints', function () {
+describe('Happenings Endpoints', function () {
   let db;
 
   const { testUsers, testHappenings } = happeningHelpers.makeHappeningFixtures();

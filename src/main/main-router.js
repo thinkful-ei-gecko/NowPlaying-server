@@ -12,8 +12,14 @@ const serializeThread = thread => ({
   title: xss(thread.title),
   event_description: xss(thread.event_description),
   date_created: thread.date_created,
-  media_id: thread.media_id,
-  comment_id: thread.comment_id
+  media_runtime: thread.media_runtime,
+  release_date: thread.release_date,
+  genre: thread.genre,
+  imdb_rating: thread.imdb_rating,
+  mpaa_rating: thread.mpaa_rating,
+  poster: thread.poster,
+  movie_id: thread.movie_id,
+  media_id: thread.media_id
 });
 
 mainRouter
@@ -30,12 +36,26 @@ mainRouter
 mainRouter
   .route('/:thread') 
   .get((req,res,next) => {//tested and works in postman
+
     const db = req.app.get('db');
     let mediaType = req.params.thread;
 
+    const validMediaTypes = ['movies', 'tv_shows', 'podcasts', 'books'];
+    let trueArray = [];
+
+    for(let i = 0; i < validMediaTypes.length; i++) {
+      if(mediaType === validMediaTypes[i]) {
+        trueArray.push('matches');
+      }
+    }
+
+    if(trueArray.length !== 1) {
+      return res.status(404).json({error: 'Media type does not exist'});
+    }
+
     MainService.getAllEntriesByMediaType(db,mediaType)
       .then(mediaTypes => {
-        return res.status(200).json(mediaTypes);
+        return res.status(200).json(mediaTypes.map(serializeThread));
       })
       .catch(next);
   })
@@ -72,7 +92,7 @@ mainRouter
       .then(thread => {
         return res
           .status(201)
-          .location(path.posix.join(req.originalUrl, `/${mediaType}`))
+          .location(path.posix.join(req.originalUrl))
           .json(serializeThread(thread));
       })
       .catch(next);
@@ -87,7 +107,10 @@ mainRouter
 
     MainService.getIndividualThread(db, mediaType, id)
       .then(thread => {
-        return res.status(200).json(thread);
+        if(!thread) {
+          return res.status(404).json( {error: 'Thread was not found'} );
+        }
+        return res.status(200).json(serializeThread(thread));
       })
       .catch(next);    
   });

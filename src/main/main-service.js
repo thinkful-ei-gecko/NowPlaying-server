@@ -15,7 +15,8 @@ const MainService = {
     return db
       .from(mediaType)
       .select('*')
-      .where( {id} );
+      .where( {id} )
+      .first();
   },
 
   getCommentsForThread(db, commentTable, media_id) {
