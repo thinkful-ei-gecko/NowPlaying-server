@@ -78,8 +78,23 @@ describe('Main endpoints', function () {
       });
     });
 
+    context('Given an XSS attack', () => {
+      const { maliciousThread, expectedThread } = mainHelpers.makeMaliciousThread();
+      const thread = 'movies';
+      beforeEach('Insert malicious thread', () => 
+        mainHelpers.seedThreads(db, testUsers, testCategories, [maliciousThread])
+      );
 
-
+      it('removes XSS attack content', () => {
+        return supertest(app)
+          .get(`/api/main/${thread}`)
+          .expect(200)
+          .expect(res => {
+            expect(res.body[0].title).to.eql(expectedThread.title);
+            expect(res.body[0].event_description).to.eql(expectedThread.event_description);
+          });
+      });
+    });
   });
 
   describe('POST /api/main/:thread', () => {
@@ -219,7 +234,7 @@ describe('Main endpoints', function () {
 
         return supertest(app)
           .get(`/api/main/${thread}/${id}`)
-          .expect(200, expectedThread);
+          .expect(200, [expectedThread]);
       });
     });
 
@@ -235,13 +250,11 @@ describe('Main endpoints', function () {
           .get(`/api/main/${thread}/${maliciousThread.id}`)
           .expect(200)
           .expect(res => {
-            expect(res.body.title).to.eql(expectedThread.title);
-            expect(res.body.event_description).to.eql(expectedThread.event_description);
+            expect(res.body[0].title).to.eql(expectedThread.title);
+            expect(res.body[0].event_description).to.eql(expectedThread.event_description);
           });
       });
     });
-
-
   });
 
   describe('GET /api/main/:thread/:id/movie_comments', () => {

@@ -59,7 +59,8 @@ happeningRouter
 
     HappeningService.getIndividualHappeningEvent(db,id)
       .then(event => {
-        if(!event) {
+        let [ happeningEvent ] = event;
+        if(!happeningEvent) {
           return res.status(404).send({error: 'Event not found'});
         }
         res.event = event;

@@ -10,8 +10,7 @@ const HappeningService = {
     return db
       .select('*')
       .from('happening')
-      .where({ id })
-      .first();
+      .where({ id });
   },
   insertHappeningEvent(db, newHappening) {
     return db

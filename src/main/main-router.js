@@ -107,10 +107,11 @@ mainRouter
 
     MainService.getIndividualThread(db, mediaType, id)
       .then(thread => {
-        if(!thread) {
+        let [ threadObject ] = thread;
+        if(!threadObject) {
           return res.status(404).json( {error: 'Thread was not found'} );
         }
-        return res.status(200).json(serializeThread(thread));
+        return res.status(200).json(thread.map(serializeThread));
       })
       .catch(next);    
   });
