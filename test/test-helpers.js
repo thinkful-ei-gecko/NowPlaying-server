@@ -106,10 +106,136 @@ function seedUsers(db, users) {
 }
 
 
+function makeMediaTypeArray(){
+  return [
+    {
+      id: 1,
+      title: 'First test thread',
+      event_description: 'Setup thread for watching Frozen',
+      date_created: '2019-01-01T14:10:50.615Z',
+      media_id: 1, 
+    },
+    {
+      id: 2,
+      title: 'Second test thread',
+      event_description: 'Setup thread for watching LOTR',
+      date_created: '2019-01-01T14:10:50.615Z',
+      media_id: 1, 
+    },
+    {
+      id: 3,
+      title: 'Third test thread',
+      event_description: 'Setup thread for watching Goodfellas',
+      date_created: '2019-01-01T14:10:50.615Z',
+      media_id: 1, 
+    }
+  ];
+}
+
+function makeCommentsArray(users){
+  return [
+    {
+      id: 1,
+      user_comment: 'First Test Comment',
+      user_name: 'demo',
+      date_created: '2019-01-01T14:10:50.615Z',
+      media_id: 1,
+    },
+    {
+      id: 2,
+      user_comment: 'Second Test Comment',
+      user_name: 'demo',
+      date_created: '2019-01-01T14:10:50.615Z',
+      media_id: 1,
+    }, 
+    {
+      id: 3,
+      user_comment: 'Third Test Comment',
+      user_name: 'admin',
+      date_created: '2019-01-01T14:10:50.615Z',
+      media_id: 1,
+    }
+  ]; 
+}
+
+function makeExpectedMediaType(users, media, comments=[]){
+  const user = users.find(user => user.id === user.user_id)
+  const number_of_comments = comments.filter(comment => comment.media_id === media.id).length
+
+  return{
+    id: media.id,
+    title: media.title,
+    event_description: media.event_description,
+    date_created: media.date_created.toISOString(),
+    media_id: media.media_id,
+    number_of_comments,
+    user: {
+      id: user.id,
+      username: user.username,
+      email: user.email,
+    }
+  }
+}
+
+function makeExpectedMediaTypeComments(users, mediaId, comments) {
+  const expectedComments = comments.filter(comment => comment.media_id === mediaId)
+
+  return expectedComments.map(comment => {
+    const commentUser = users.find(user => user.id === comment.user_id)
+    return {
+      id: comment.id,
+      user_comment: comment.user_comment,
+      date_created: comment.date_created.toISOString(),
+      media_id: comment.media_id,
+      user: {
+        id: commentUser.id,
+        username: commentUser.username,
+        email: commentUser.email,
+      }
+    }
+  })
+}
+
+function seedMediaTables(db, media, users, comments=[]){
+  return db.transaction(async trx => {
+    await seedUsers(trx, users)
+    await trx.into('movies').insert(media)
+    await trx.raw (
+    `SELECT setval('movies_id_seq', ?)`,
+    [media[media.length - 1].id],
+    )
+    if(comments.length) {
+      await trx.into('movie_comments').insert(comments)
+      await trx.raw(
+        `SELECT setval('movie_comments_id_seq', ?)`,
+        [comments[comments.length - 1].id],
+      )
+    }
+  })
+}
+
+function seedComments(db, comments=[]){
+  return db.transaction(async trx => {
+    await seedComments(trx, comments)
+    await trx.into('movie_comments').insert(comments)
+    await trx.raw (
+      `SELECT setval('movie_comments_id_seq', ?)`,
+      [comments[comments.length - 1].id],
+      )
+  })
+}
+
+
 module.exports = {
   makeKnexInstance,
   makeUsersArray,
   makeAuthHeader,
   seedUsers,
   cleanTables,
+  makeCommentsArray,
+  makeExpectedMediaType,
+  makeExpectedMediaTypeComments,
+  makeMediaTypeArray,
+  seedComments,
+  seedMediaTables,
 }

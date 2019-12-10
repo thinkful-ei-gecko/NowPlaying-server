@@ -2,7 +2,7 @@ const app = require('../src/app');
 const mainHelpers = require('./main-helpers');
 const knex = require('knex');
 
-describe.only('Main endpoints', function () {
+describe('Main endpoints', function () {
   let db;
 
   const { testUsers, testCategories, testThreads, testComments } = mainHelpers.makeThreadFixtures();
