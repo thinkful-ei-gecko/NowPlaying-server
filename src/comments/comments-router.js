@@ -12,7 +12,8 @@ const serializeComment = comment => ({
   user_comment: xss(comment.user_comment),
   user_name: comment.user_name,
   date_created: comment.date_created,
-  media_id: comment.media_id
+  media_id: comment.media_id,
+  comment_timestamp: comment.comment_timestamp
 });
 
 commentsRouter
