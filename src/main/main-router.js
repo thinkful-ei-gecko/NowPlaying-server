@@ -20,7 +20,8 @@ const serializeThread = thread => ({
   poster: thread.poster,
   movie_id: thread.movie_id,
   media_id: thread.media_id,
-  backdrop: thread.backdrop
+  backdrop: thread.backdrop,
+  video_key: thread.video_key
 });
 
 mainRouter
