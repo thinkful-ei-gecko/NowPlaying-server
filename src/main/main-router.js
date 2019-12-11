@@ -24,7 +24,7 @@ const serializeThread = thread => ({
 });
 
 mainRouter
-  .route('/') //tested and works in postman
+  .route('/')
   .get((req,res,next) => {
     const db = req.app.get('db');
     MainService.getAllCategories(db)
@@ -36,7 +36,7 @@ mainRouter
 
 mainRouter
   .route('/:thread') 
-  .get((req,res,next) => {//tested and works in postman
+  .get((req,res,next) => {
 
     const db = req.app.get('db');
     let mediaType = req.params.thread;
@@ -73,7 +73,7 @@ mainRouter
 
     const db = req.app.get('db');
     let mediaType = req.params.thread;
-    //correct media type being given
+    
     let media_id;
     if(mediaType === 'movies') {
       media_id = 1;
@@ -101,7 +101,7 @@ mainRouter
 
 mainRouter
   .route('/:thread/:id')
-  .get((req,res,next) => { //tested and works in postman
+  .get((req,res,next) => { 
     const db = req.app.get('db');
     let mediaType = req.params.thread;
     let id = req.params.id;
@@ -117,7 +117,7 @@ mainRouter
       .catch(next);    
   });
 
-mainRouter //below endpoints work in postman
+mainRouter 
   .route('/:thread/:id/movie_comments') 
   .get((req,res,next) => {
     const db = req.app.get('db');

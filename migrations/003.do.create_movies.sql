@@ -12,4 +12,3 @@ CREATE TABLE "movies" (
   backdrop TEXT DEFAULT NULL,
   movie_id INTEGER DEFAULT NULL
 );
-

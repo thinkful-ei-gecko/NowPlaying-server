@@ -30,7 +30,7 @@ describe('Happenings Endpoints', function () {
       });
     });
 
-    context('Given there are happenings in the database', () => { // NEED TO FIX UTC DATE ISSUE ON THIS TEST
+    context('Given there are happenings in the database', () => {
       beforeEach('Insert happenings', () =>
         happeningHelpers.seedHappenings(db, testUsers, testHappenings)
       );
@@ -99,7 +99,7 @@ describe('Happenings Endpoints', function () {
         .expect(400, { error: 'Media ID is required' });
     });
 
-    it('responds 201 and adds a new happening event', () => { //NEED TO CHECK UTC TEST ON THIS FOR MAC (DATE_CREATED)
+    it('responds 201 and adds a new happening event', () => {
       const newHappening = {
         media_type: 'movies',
         media_title: null,
@@ -120,8 +120,8 @@ describe('Happenings Endpoints', function () {
           expect(res.body.username).to.eql(newHappening.username);
           expect(res.body.user_comment).to.eql(newHappening.user_comment);
           expect(res.body.media_title_comments).to.eql(newHappening.media_title_comments);
-          const expectedDate = new Date().toLocaleString('en', { timeZone: 'UTC' })
-          const actualDate = new Date(res.body.date_created).toLocaleString()
+          const expectedDate = new Date().toLocaleString('en', { timeZone: 'UTC' });
+          const actualDate = new Date(res.body.date_created).toLocaleString();
           expect(actualDate).to.eql(expectedDate);
           expect(res.body.media_id).to.eql(newHappening.media_id);
           expect(res.body).to.have.property('id');
@@ -143,9 +143,9 @@ describe('Happenings Endpoints', function () {
           expect(res.body.username).to.eql(expectedHappening.username);
           expect(res.body.user_comment).to.eql(expectedHappening.user_comment);
           expect(res.body.media_title_comments).to.eql(expectedHappening.media_title_comments);
-          const expectedDate = new Date().toLocaleString('en', { timeZone: 'UTC' })
-          const actualDate = new Date(res.body.date_created).toLocaleString()
-          expect(actualDate).to.eql(expectedDate); //Test that date works on MAC
+          const expectedDate = new Date().toLocaleString('en', { timeZone: 'UTC' });
+          const actualDate = new Date(res.body.date_created).toLocaleString();
+          expect(actualDate).to.eql(expectedDate);
           expect(res.body.media_id).to.eql(expectedHappening.media_id);
           expect(res.body).to.have.property('id');
           expect(res.headers.location).to.eql(`/api/happening/${res.body.id}`);

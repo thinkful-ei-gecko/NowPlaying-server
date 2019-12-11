@@ -12,7 +12,8 @@ const serializeComment = comment => ({
   user_comment: xss(comment.user_comment),
   user_name: comment.user_name,
   date_created: comment.date_created,
-  media_id: comment.media_id
+  media_id: comment.media_id,
+  comment_timestamp: comment.comment_timestamp
 });
 
 commentsRouter
@@ -36,7 +37,7 @@ commentsRouter
       .then(comment => {
         res
           .status(201)
-          .location(path.posix.join(req.originalUrl, `/${comment.id}`)) // May need to rethink ${comment.id}
+          .location(path.posix.join(req.originalUrl, `/${comment.id}`))
           .json(serializeComment(comment));
       })
       .catch(next);

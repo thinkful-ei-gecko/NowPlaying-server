@@ -55,7 +55,7 @@ describe('Main endpoints', function () {
       });
     });
 
-    context('Given there are movies in the database', () => { //WORKS BUT DATES ARE FUNKY BECAUSE UTC...TEST ON MAC
+    context('Given there are movies in the database', () => {
       beforeEach('Insert threads', () => 
         mainHelpers.seedThreads(db, testUsers, testCategories, testThreads)
       );
@@ -144,7 +144,7 @@ describe('Main endpoints', function () {
         .expect(400, {error: 'Media runtime is required'});
     });
 
-    it('responds with 201 and adds a new thread', () => { // TEST DATE ISSUE ON MAC
+    it('responds with 201 and adds a new thread', () => {
       const newThread = {
         title: 'Movie 3',
         event_description: 'Lorem ipsum',
@@ -180,7 +180,7 @@ describe('Main endpoints', function () {
         });
     });
 
-    it('removes XSS attack content from response', () => { // NEED TO TEST DATE ON MAC
+    it('removes XSS attack content from response', () => {
       before('Insert threads', () => 
         mainHelpers.seedThreads(db, testUsers, testCategories, testThreads)
       );
@@ -206,7 +206,6 @@ describe('Main endpoints', function () {
           expect(res.body).to.have.property('id');
         });
     });
-
   });
 
   describe('GET /api/main/:thread/:id', () => {
@@ -220,7 +219,7 @@ describe('Main endpoints', function () {
       });
     });
 
-    context('Given there are threads in the database', () => { // NEED TO TEST DATE UTC ON MAC
+    context('Given there are threads in the database', () => {
       beforeEach('Insert threads', () =>
         mainHelpers.seedThreads(db, testUsers, testCategories, testThreads)
       );
@@ -266,7 +265,7 @@ describe('Main endpoints', function () {
       });
     });
 
-    context('Given there are comments in the database', () => { // NEED TO TEST UTC TIME ON MAC
+    context('Given there are comments in the database', () => {
       beforeEach('Insert movies', () =>
         mainHelpers.seedThreadComments(db, testUsers, testCategories, testThreads, testComments)
       );

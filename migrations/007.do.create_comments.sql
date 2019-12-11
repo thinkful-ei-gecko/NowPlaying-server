@@ -29,6 +29,3 @@ CREATE TABLE "book_comments" (
   date_created TIMESTAMP DEFAULT now() NOT NULL,
   comment_timestamp INTEGER NOT NULL
 );
-
-
-

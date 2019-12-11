@@ -17,19 +17,13 @@ app.use(morgan(morganOption));
 app.use(cors());
 app.use(helmet());
 
-app.use('/api/auth', authRouter); //login
-app.use('/api/user', userRouter); //registration
-app.use('/api/main', mainRouter); //main
-app.use('/api/comments', commentsRouter); //comments
-app.use('/api/happening', happeningRouter); // happenings
-
-app.get('/', (req, res) => {
-    res.status(200).send('Hello, world!')
-});
+//Endpoints used for server
+app.use('/api/auth', authRouter);
+app.use('/api/user', userRouter);
+app.use('/api/main', mainRouter);
+app.use('/api/comments', commentsRouter);
+app.use('/api/happening', happeningRouter);
 
 app.use(errorHandler);
 
 module.exports = app;
-
-//testing for preet
-
