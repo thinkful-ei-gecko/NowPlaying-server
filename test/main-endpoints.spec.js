@@ -105,7 +105,7 @@ describe('Main endpoints', function () {
     it('responds with 400 missing title if not supplied', () => {
       const newThreadMissingTitle = {
         event_description: 'Lorem ipsum',
-        date_created: '2019-05-04T09:20:19.000Z',
+        date_created: '2019-05-04T00:20:19.000Z',
         media_runtime: 113,
         release_date: '2014-03-05',
         genre: 'Thriller',
@@ -127,7 +127,7 @@ describe('Main endpoints', function () {
       const newThreadMissingRuntime = {
         title: 'Example',
         event_description: 'Lorem ipsum',
-        date_created: '2019-05-04T09:20:19.000Z',
+        date_created: '2019-05-04T00:20:19.000Z',
         release_date: '2014-03-05',
         genre: 'Thriller',
         imdb_rating: 2,
@@ -148,13 +148,13 @@ describe('Main endpoints', function () {
       const newThread = {
         title: 'Movie 3',
         event_description: 'Lorem ipsum',
-        date_created: '2018-12-08T09:55:50.000Z',
         media_runtime: 125,
         release_date: '1990-02-28',
         genre: 'Romance',
         imdb_rating: 5,
         mpaa_rating: 'R',
         poster: 'https://m.media-amazon.com/images/M/MV5BN2EyZjM3NzUtNWUzMi00MTgxLWI0NTctMzY4M2VlOTdjZWRiXkEyXkFqcGdeQXVyNDUzOTQ5MjY@._V1_SX300.jpg',
+        backdrop: 'example',
         movie_id: 22250,
         media_id: 1
       };
@@ -167,9 +167,6 @@ describe('Main endpoints', function () {
         .expect(res => {
           expect(res.body.title).to.eql(newThread.title);
           expect(res.body.event_description).to.eql(newThread.event_description);
-          const expectedDate = new Date().toLocaleString('en', { timeZone: 'UTC' })
-          const actualDate = new Date(res.body.date_created).toLocaleString()
-          expect(actualDate).to.eql(expectedDate);
           expect(res.body.media_runtime).to.eql(newThread.media_runtime);
           expect(res.body.release_date).to.eql(newThread.release_date);
           expect(res.body.genre).to.eql(newThread.genre);
@@ -198,9 +195,6 @@ describe('Main endpoints', function () {
         .expect(res => {
           expect(res.body.title).to.eql(expectedThread.title);
           expect(res.body.event_description).to.eql(expectedThread.event_description);
-          const expectedDate = new Date().toLocaleString('en', { timeZone: 'UTC' })
-          const actualDate = new Date(res.body.date_created).toLocaleString()
-          expect(actualDate).to.eql(expectedDate);
           expect(res.body.media_runtime).to.eql(expectedThread.media_runtime);
           expect(res.body.release_date).to.eql(expectedThread.release_date);
           expect(res.body.genre).to.eql(expectedThread.genre);

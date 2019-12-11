@@ -36,10 +36,10 @@ VALUES
 
 INSERT INTO "movies"("title", "event_description", "date_created", "media_id", "media_runtime", "release_date", "genre", "imdb_rating", "mpaa_rating", "poster", "movie_id")
 VALUES
-    ('Lord of the Rings', 'LotR is a fantasy movie about a fellowship trying to stop the dark forces of Sauron', '2019-09-09 01:30:59', 1, 178, '2001-12-19', 'Fantasy', 8.8, 'PG-13', 'https://m.media-amazon.com/images/M/MV5BN2EyZjM3NzUtNWUzMi00MTgxLWI0NTctMzY4M2VlOTdjZWRiXkEyXkFqcGdeQXVyNDUzOTQ5MjY@._V1_SX300.jpg', 120),
-    ('Inception', 'Prepare to have your mind incepted', '2017-03-09 11:30:59', 1, 148, '2010-07-16', 'Action', 8.8, 'PG-13', 'https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_SX300.jpg', 27205),
-    ('Goodfellas', 'A gangster movie', '1960-09-09 20:40:59', 1, 146, '1990-09-21', 'Drama', 8.7, 'R', 'https://m.media-amazon.com/images/M/MV5BY2NkZjEzMDgtN2RjYy00YzM1LWI4ZmQtMjIwYjFjNmI3ZGEwXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_SX300.jpg', 769),
-    ('Frozen', 'Let it goooooo', '2010-02-10 10:30:59', 1, 102, '2013-11-27', 'Animation', 7.5, 'PG', 'https://m.media-amazon.com/images/M/MV5BMTQ1MjQwMTE5OF5BMl5BanBnXkFtZTgwNjk3MTcyMDE@._V1_SX300.jpg', 109445);
+    ('Lord of the Rings', 'LotR is a fantasy movie about a fellowship trying to stop the dark forces of Sauron', '2019-09-09', 1, 178, '2001-12-19', 'Fantasy', 8.8, 'PG-13', 'https://m.media-amazon.com/images/M/MV5BN2EyZjM3NzUtNWUzMi00MTgxLWI0NTctMzY4M2VlOTdjZWRiXkEyXkFqcGdeQXVyNDUzOTQ5MjY@._V1_SX300.jpg', 120),
+    ('Inception', 'Prepare to have your mind incepted', '2017-03-09', 1, 148, '2010-07-16', 'Action', 8.8, 'PG-13', 'https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_SX300.jpg', 27205),
+    ('Goodfellas', 'A gangster movie', '1960-09-09', 1, 146, '1990-09-21', 'Drama', 8.7, 'R', 'https://m.media-amazon.com/images/M/MV5BY2NkZjEzMDgtN2RjYy00YzM1LWI4ZmQtMjIwYjFjNmI3ZGEwXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_SX300.jpg', 769),
+    ('Frozen', 'Let it goooooo', '2010-02-10', 1, 102, '2013-11-27', 'Animation', 7.5, 'PG', 'https://m.media-amazon.com/images/M/MV5BMTQ1MjQwMTE5OF5BMl5BanBnXkFtZTgwNjk3MTcyMDE@._V1_SX300.jpg', 109445);
 
 INSERT INTO "tv_shows"("title", "event_description", "date_created", "media_id", "media_runtime")
 VALUES
@@ -94,8 +94,5 @@ INSERT INTO "happening"("media_type", "media_title", "username", "user_comment",
 VALUES
     ('movies', 'Frozen', null, null, null, '2019-05-04 02:20:19', 1),
     ('movies', null, 'admin', 'another comment from admin', 'Frozen', '1960-09-09 20:40:59', 1);
-    -- ('movies', 'Cinderalla', null, null, null, '2017-03-09 11:30:59'),
-    -- (null, null, 'admin', 'random comment from admin', 'Cinderalla', '2019-09-09 01:30:59'),
-    -- (null, null, 'demo', 'this is a comment from demo', 'Frozen', '2010-02-10 10:30:59');
 
 COMMIT;

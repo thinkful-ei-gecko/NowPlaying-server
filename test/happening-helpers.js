@@ -179,7 +179,6 @@ module.exports = {
   makeExpectedHappenings,
   makeMaliciousHappening,
   
-
   makeHappeningFixtures,
   cleanTables,
   seedHappenings,

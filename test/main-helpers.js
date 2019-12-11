@@ -51,13 +51,14 @@ function makeThreadArray(category) {
       id: 1,
       title: 'Movie 1',
       event_description: 'Lorem ipsum',
-      date_created: '2019-12-08T09:55:55.000Z',
+      date_created: '2019-12-08T00:00:00.000Z',
       media_runtime: 130,
       release_date: '2019-01-15',
       genre: 'Action',
       imdb_rating: 7,
       mpaa_rating: 'PG',
       poster: 'https://m.media-amazon.com/images/M/MV5BN2EyZjM3NzUtNWUzMi00MTgxLWI0NTctMzY4M2VlOTdjZWRiXkEyXkFqcGdeQXVyNDUzOTQ5MjY@._V1_SX300.jpg',
+      backdrop: 'example',
       movie_id: 120,
       media_id: category.id
     },
@@ -65,13 +66,14 @@ function makeThreadArray(category) {
       id: 2,
       title: 'Movie 2',
       event_description: 'Lorem ipsum',
-      date_created: '2019-12-08T09:55:54.000Z',
+      date_created: '2019-12-08T00:00:00.000Z',
       media_runtime: 150,
       release_date: '2014-05-23',
       genre: 'Comedy',
       imdb_rating: 6,
       mpaa_rating: 'PG-13',
       poster: 'https://m.media-amazon.com/images/M/MV5BN2EyZjM3NzUtNWUzMi00MTgxLWI0NTctMzY4M2VlOTdjZWRiXkEyXkFqcGdeQXVyNDUzOTQ5MjY@._V1_SX300.jpg',
+      backdrop: 'example',
       movie_id: 11323,
       media_id: category.id
     },
@@ -79,13 +81,14 @@ function makeThreadArray(category) {
       id: 3,
       title: 'Movie 3',
       event_description: 'Lorem ipsum',
-      date_created: '2018-12-08T09:55:50.000Z',
+      date_created: '2018-12-08T00:00:00.000Z',
       media_runtime: 125,
       release_date: '1990-02-28',
       genre: 'Romance',
       imdb_rating: 5,
       mpaa_rating: 'R',
       poster: 'https://m.media-amazon.com/images/M/MV5BN2EyZjM3NzUtNWUzMi00MTgxLWI0NTctMzY4M2VlOTdjZWRiXkEyXkFqcGdeQXVyNDUzOTQ5MjY@._V1_SX300.jpg',
+      backdrop: 'example',
       movie_id: 22250,
       media_id: category.id
     },
@@ -93,13 +96,14 @@ function makeThreadArray(category) {
       id: 4,
       title: 'Movie 4',
       event_description: 'Lorem ipsum',
-      date_created: '2019-05-04T09:20:19.000Z',
+      date_created: '2019-05-04T00:00:00.000Z',
       media_runtime: 113,
       release_date: '2014-03-05',
       genre: 'Thriller',
       imdb_rating: 2,
       mpaa_rating: 'G',
       poster: 'https://m.media-amazon.com/images/M/MV5BN2EyZjM3NzUtNWUzMi00MTgxLWI0NTctMzY4M2VlOTdjZWRiXkEyXkFqcGdeQXVyNDUzOTQ5MjY@._V1_SX300.jpg',
+      backdrop: 'example',
       movie_id: 150,
       media_id: category.id
     },
@@ -163,6 +167,7 @@ function makeExpectedThreads(thread) {
     imdb_rating: thread.imdb_rating,
     mpaa_rating: thread.mpaa_rating,
     poster: thread.poster,
+    backdrop: thread.backdrop,
     movie_id: thread.movie_id,
     media_id: thread.media_id
   };
@@ -191,6 +196,7 @@ function makeMaliciousThread() {
     imdb_rating: 7,
     mpaa_rating: 'PG',
     poster: 'https://m.media-amazon.com/images/M/MV5BN2EyZjM3NzUtNWUzMi00MTgxLWI0NTctMzY4M2VlOTdjZWRiXkEyXkFqcGdeQXVyNDUzOTQ5MjY@._V1_SX300.jpg',
+    backdrop: 'example',
     movie_id: 120,
     media_id: 1
   };
@@ -263,7 +269,7 @@ function seedThreads(db, users, categories, threads) {
     await seedCategories(trx, categories);
     await trx.into('movies').insert(threads);
     await trx.raw(
-      `SELECT setval('happening_id_seq', ?)`,
+      `SELECT setval('movies_id_seq', ?)`,
       [threads[threads.length - 1].id],
     );
   });
