@@ -173,7 +173,8 @@ function makeExpectedThreads(thread) {
     poster: thread.poster,
     backdrop: thread.backdrop,
     movie_id: thread.movie_id,
-    media_id: thread.media_id
+    media_id: thread.media_id,
+    video_key: thread.video_key
   };
 }
 
@@ -202,7 +203,8 @@ function makeMaliciousThread() {
     poster: 'https://m.media-amazon.com/images/M/MV5BN2EyZjM3NzUtNWUzMi00MTgxLWI0NTctMzY4M2VlOTdjZWRiXkEyXkFqcGdeQXVyNDUzOTQ5MjY@._V1_SX300.jpg',
     backdrop: 'example',
     movie_id: 120,
-    media_id: 1
+    media_id: 1,
+    video_key: 'test'
   };
   const expectedThread = {
     ...makeExpectedThreads(maliciousThread),
