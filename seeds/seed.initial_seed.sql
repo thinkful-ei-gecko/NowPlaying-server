@@ -10,7 +10,8 @@ TRUNCATE
     "movie_comments",
     "tv_show_comments",
     "podcast_comments",
-    "book_comments";
+    "book_comments",
+    "happening";
 
 INSERT INTO "user"("username", "password", "email")
 VALUES
