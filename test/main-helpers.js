@@ -60,7 +60,8 @@ function makeThreadArray(category) {
       poster: 'https://m.media-amazon.com/images/M/MV5BN2EyZjM3NzUtNWUzMi00MTgxLWI0NTctMzY4M2VlOTdjZWRiXkEyXkFqcGdeQXVyNDUzOTQ5MjY@._V1_SX300.jpg',
       backdrop: 'example',
       movie_id: 120,
-      media_id: category.id
+      media_id: category.id,
+      video_key: 'test'
     },
     {
       id: 2,
@@ -75,7 +76,8 @@ function makeThreadArray(category) {
       poster: 'https://m.media-amazon.com/images/M/MV5BN2EyZjM3NzUtNWUzMi00MTgxLWI0NTctMzY4M2VlOTdjZWRiXkEyXkFqcGdeQXVyNDUzOTQ5MjY@._V1_SX300.jpg',
       backdrop: 'example',
       movie_id: 11323,
-      media_id: category.id
+      media_id: category.id,
+      video_key: 'test'
     },
     {
       id: 3,
@@ -90,7 +92,8 @@ function makeThreadArray(category) {
       poster: 'https://m.media-amazon.com/images/M/MV5BN2EyZjM3NzUtNWUzMi00MTgxLWI0NTctMzY4M2VlOTdjZWRiXkEyXkFqcGdeQXVyNDUzOTQ5MjY@._V1_SX300.jpg',
       backdrop: 'example',
       movie_id: 22250,
-      media_id: category.id
+      media_id: category.id,
+      video_key: 'test'
     },
     {
       id: 4,
@@ -105,7 +108,8 @@ function makeThreadArray(category) {
       poster: 'https://m.media-amazon.com/images/M/MV5BN2EyZjM3NzUtNWUzMi00MTgxLWI0NTctMzY4M2VlOTdjZWRiXkEyXkFqcGdeQXVyNDUzOTQ5MjY@._V1_SX300.jpg',
       backdrop: 'example',
       movie_id: 150,
-      media_id: category.id
+      media_id: category.id,
+      video_key: 'test'
     },
   ];
 }

@@ -10,5 +10,6 @@ CREATE TABLE "movies" (
   mpaa_rating TEXT DEFAULT NULL,
   poster TEXT DEFAULT NULL,
   backdrop TEXT DEFAULT NULL,
-  movie_id INTEGER DEFAULT NULL
+  movie_id INTEGER DEFAULT NULL,
+  video_key TEXT DEFAULT NUll
 );

@@ -61,8 +61,8 @@ mainRouter
       .catch(next);
   })
   .post(requireAuth, jsonParser, (req,res,next) => {
-    const { title, event_description, media_runtime, release_date, genre, imdb_rating, mpaa_rating, poster, backdrop, movie_id } = req.body;
-    const newThread = { title, event_description, media_runtime, release_date, genre, imdb_rating, mpaa_rating, poster, backdrop, movie_id };
+    const { title, event_description, media_runtime, release_date, genre, imdb_rating, mpaa_rating, poster, backdrop, movie_id, video_key } = req.body;
+    const newThread = { title, event_description, media_runtime, release_date, genre, imdb_rating, mpaa_rating, poster, backdrop, movie_id, video_key };
 
     if(!title) {
       return res.status(400).json( {error: 'Title is required'} );
