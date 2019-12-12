@@ -100,7 +100,7 @@ Now Playing API is the server responsible for handling API requests for the Now 
   * username (required): User's username
   * password (required): User's password
 
-#### Technologies
+## Technologies
 * NodeJS
 * Express
 * PostgreSQL
