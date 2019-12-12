@@ -17,14 +17,14 @@ INSERT INTO "user"("username", "password", "email")
 VALUES
     (
         'demo',
-        -- password = 'pass,
-        '$2a$10$fCWkaGbt7ZErxaxclioLteLUgg4Q3Rp09WW0s/wSLxDKYsaGYUpjG',
+        -- password = 'Password!1',
+        '$2y$12$pPiSpsQn2PMkAyvw75001.A6vdh0Ki2wlbukD0j2txbDg4TnVmHky',
         'demo@email.com'
     ),
     (
         'admin',
-        -- password = 'pass,
-        '$2a$10$fCWkaGbt7ZErxaxclioLteLUgg4Q3Rp09WW0s/wSLxDKYsaGYUpjG',
+        -- password = 'Password!1',
+        '$2y$12$pPiSpsQn2PMkAyvw75001.A6vdh0Ki2wlbukD0j2txbDg4TnVmHky',
         'admin@email.com'
     );
 
