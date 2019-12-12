@@ -89,7 +89,7 @@ Now Playing API is the server responsible for handling API requests for the Now 
 
 
 #### User Endpoint
-* ```POST /api/user ``` : Endpoint for user to register and create their own account for the application. Credentials are stored in the "user" table in the database. Field options include:
+* ```POST /api/user``` : Endpoint for user to register and create their own account for the application. Credentials are stored in the "user" table in the database. Field options include:
   * email (required): User's email address
   * username (required): User's desired username
   * password (required): User's desired password
