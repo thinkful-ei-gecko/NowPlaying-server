@@ -64,7 +64,7 @@ Now Playing API is the server responsible for handling API requests for the Now 
 
 #### Unprotected Endpoints
 ##### Main Endpoints (Unprotected)
-* ```GET /api/main``` : Returns an array of all the media type categories
+* ```GET /api/main``` : Returns an array of all the media type categories:
   * movies
   * tv_shows
   * podcasts
