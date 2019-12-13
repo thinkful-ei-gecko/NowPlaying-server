@@ -1,6 +1,6 @@
 # Now Playing API
-* Live link to API endpoints: 
-* Live link to application: 
+* Live link to API endpoints: https://murmuring-lowlands-61113.herokuapp.com/api
+* Live link to application: https://playing-phi-ten.now.sh/
 
 * Link to Server Repo: https://github.com/thinkful-ei-gecko/NowPlaying-server
 * Link to Client Repo: https://github.com/thinkful-ei-gecko/NowPlaying-Client
