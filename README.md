@@ -5,7 +5,7 @@
 * Link to Server Repo: https://github.com/thinkful-ei-gecko/NowPlaying-server
 * Link to Client Repo: https://github.com/thinkful-ei-gecko/NowPlaying-Client
 
-!HomePage(/homepage.png)
+![HomePage](/homepage.png)
 
 ## Contributors to Repository:
 * EJ Gonzalez
