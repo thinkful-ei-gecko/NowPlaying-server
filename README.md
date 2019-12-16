@@ -1,6 +1,6 @@
 # Now Playing API
-* Live link to API endpoints: 
-* Live link to application: 
+* Live link to API endpoints: https://murmuring-lowlands-61113.herokuapp.com/api
+* Live link to application: https://playing-phi-ten.now.sh/
 
 * Link to Server Repo: https://github.com/thinkful-ei-gecko/NowPlaying-server
 * Link to Client Repo: https://github.com/thinkful-ei-gecko/NowPlaying-Client
@@ -66,7 +66,7 @@ Now Playing API is the server responsible for handling API requests for the Now 
 
 #### Unprotected Endpoints
 ##### Main Endpoints (Unprotected)
-* ```GET /api/main``` : Returns an array of all the media type categories
+* ```GET /api/main``` : Returns an array of all the media type categories:
   * movies
   * tv_shows
   * podcasts
